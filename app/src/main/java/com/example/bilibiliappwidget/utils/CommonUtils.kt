@@ -27,7 +27,7 @@ fun Any.toast(context: Context, msg: String) {
 
 //获取网络图片
 @Throws(IOException::class)
-fun Any.addPhoto(context: Context,path: String,fileName : String){
+fun Any.addPhoto(path: String,fileName : String){
     var dir = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED)
         Environment.getExternalStorageDirectory().absolutePath;
     else
@@ -61,4 +61,21 @@ fun Any.addPhoto(context: Context,path: String,fileName : String){
     //保存图片后发送广播通知更新数据库
     //val uri: Uri = Uri.fromFile(file)
     //(context as Activity).sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri))
+}
+
+
+fun Any.rename(str : String) : String{
+    return str.replace(".","")
+        .replace("\\","")
+        .replace("/","")
+        .replace(":","")
+        .replace("*","")
+        .replace("?","")
+        .replace("<","")
+        .replace(">","")
+        .replace("|","")
+        .replace("[","")
+        .replace("]","")
+        .replace("{","")
+        .replace("}","")
 }

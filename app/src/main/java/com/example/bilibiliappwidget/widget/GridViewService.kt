@@ -1,23 +1,17 @@
 package com.example.bilibiliappwidget.widget
 
-import android.app.PendingIntent
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Environment
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import com.example.bilibiliappwidget.R
 import com.example.bilibiliappwidget.Room.AppDataBase
 import com.example.bilibiliappwidget.data.Season
-import com.example.bilibiliappwidget.utils.debug
+import com.example.bilibiliappwidget.utils.rename
 import java.io.FileInputStream
 
 
@@ -75,7 +69,8 @@ class GridViewService : RemoteViewsService() {
                     Environment.getExternalStorageDirectory().absolutePath;
                 else
                     Environment.getRootDirectory().absolutePath
-                val fs = FileInputStream("$dir/bilibiliWidgt/${animeList[position-7].title}.jpg")
+                var title = rename(animeList[position-7].title!!)
+                val fs = FileInputStream("$dir/bilibiliWidgt/$title.jpg")
                 var bitmap = BitmapFactory.decodeStream(fs)
                 bitmap = Bitmap.createBitmap(bitmap)
                 views.setImageViewBitmap(R.id.iv_pic,bitmap)
